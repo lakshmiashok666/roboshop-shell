@@ -10,7 +10,7 @@ mkdir /app
 echo -e "\e[33m download the applicaion conent\e[0m"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>/tmp/roboshop.log
 cd /app
-echo -e "\e[33mextract the\e[0m"
+echo -e "\e[33mextract the content\e[0m"
 unzip /tmp/catalogue.zip &>>/tmp/roboshop.log
 cd /app
 echo -e "\e[33m install nodejs dependencies\e[0m"
@@ -20,7 +20,7 @@ cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.s
 echo -e "\e[33mstart catalogue service\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable catalogue &>>/tmp/roboshop.log
-systemctl start catalogue &>>/tmp/roboshop.log
+systemctl restart catalogue &>>/tmp/roboshop.log
 echo -e "\e[33mcopy mongodb repo file\e[0m"
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
 echo -e "\e[33minstall mongodb client\e[0m"

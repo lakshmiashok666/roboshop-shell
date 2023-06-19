@@ -14,6 +14,7 @@ cd /app
 echo -e "\e[33m download maven dependencies \e[0m"
 mvn clean package &>>/tmp/roboshop.log
 mv target/shipping-1.0.jar shipping.jar &>>/tmp/roboshop.log
+echo -e "\e[33m start systemd service \e[0m"
 cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>>/tmp/roboshop.log
 echo -e "\e[33m start mysql service \e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log

@@ -9,10 +9,10 @@ rm -rf /app &>>/tmp/roboshop.log
 mkdir /app
 echo -e "\e[34m download application content\e[0m"
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip  &>>/tmp/roboshop.log
-
+cd /app
 echo -e "\e[34m extract application content\e[0m"
 unzip /tmp/payment.zip &>>/tmp/roboshop.log
-cd /app
+
 echo -e "\e[34m download dependencies \e[0m"
 pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
 

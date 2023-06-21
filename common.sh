@@ -4,7 +4,7 @@ nocolor="\e[0m"
 log_path="/tmp/roboshop.log"
 app_path="/app"
 
-node js(){
+nodejs(){
  echo -e "${color}configuration nodejs repos ${nocolor}"
  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_path}
  echo -e "${color}install nodejs\e[0m"

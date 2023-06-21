@@ -1,5 +1,6 @@
 etc -e "\e[34m install python36 \e[0m"
 yum install python36 gcc python3-devel -y &>>/tmp/roboshop.log
+
 etc -e "\e[34m install python36 \e[0m"
 useradd roboshop &>>/tmp/roboshop.log
 
@@ -16,6 +17,7 @@ unzip /tmp/payment.zip &>>/tmp/roboshop.log
 cd /app
 etc -e "\e[34m download dependences \e[0m"
 pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
+
 etc -e "\e[34m setup systemd service\e[0m"
 cp /home/centos/roboshop-shell/ payment.service /etc/systemd/system/payment.service &>>/tmp/roboshop.log
 etc -e "\e[34m start the payment services\e[0m"

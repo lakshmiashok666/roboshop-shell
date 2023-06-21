@@ -1,6 +1,6 @@
 component="catalogue"
-color="\e[33"
-noclor="\e[0m"
+color="\e[33m"
+nocolor="\e[0m"
 log_path="/tmp/roboshop.log"
 app_path="/app"
 echo -e "${color}configuration nodejs repos ${nocolor}"

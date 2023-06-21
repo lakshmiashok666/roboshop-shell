@@ -2,9 +2,11 @@ etc -e "\e[34m install python36 \e[0m"
 yum install python36 gcc python3-devel -y &>>/tmp/roboshop.log
 etc -e "\e[34m install python36 \e[0m"
 useradd roboshop &>>/tmp/roboshop.log
+
 etc -e "\e[34m create the application drive \e[0m" &>>/tmp/roboshop.log
 rm -rf /app &>>/tmp/roboshop.log
 mkdir /app
+
 etc -e "\e[34m download appliction content\e[0m"
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip  &>>/tmp/roboshop.log
 cd /app

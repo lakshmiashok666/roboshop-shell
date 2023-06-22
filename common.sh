@@ -52,6 +52,7 @@ mongo_load_schema()
   yum install mongodb-org-shell -y &>>${log_path}
   echo -e "${color}load schema${nocolor}"
   mongo --host mongodb-dev.devops73.in </app/schema/$component.js &>>${log_path}
+  mongo --host mongodb-dev.devops73.in </app/schema/$componet.js &>>${log_path}
 }
 mysql_shema_setup()
 {

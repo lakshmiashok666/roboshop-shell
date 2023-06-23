@@ -38,7 +38,7 @@ app_pre_setup()
 {
  echo -e "${color} setup systemd service ${nocolor}"
  cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service &>>${log_path}
- set -i -e "s/roboshop_add_password/@1/" cp /home/centos/roboshop-shell/$component.service"
+
  stat_check $?
  echo -e "${color}start catalogue service ${nocolor}"
  systemctl daemon-reload &>>${log_path}
@@ -98,8 +98,8 @@ maven()
  systemd_setup
 
 }
-python()
-{
+python() {
+
  echo -e "${color} install python ${nocolor}"
  yum install python36 gcc python3-devel -y &>>${log_path}
  stat_check $?
@@ -109,6 +109,5 @@ python()
  pip3.6 install -r requirements.txt &>>${log_path}
  stat_check $?
  systemd_setup
-
 
 }

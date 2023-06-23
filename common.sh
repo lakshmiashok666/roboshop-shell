@@ -6,7 +6,7 @@ app_pre_setup()
 {
   stat_check()
   {
-    if [ $? -eq 0 ]; then
+    if [ $1 -eq 0 ]; then
         echo success
       else
         echo failure
@@ -37,7 +37,7 @@ app_pre_setup()
 {
  echo -e "${color} setup systemd service ${nocolor}"
  cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service &>>${log_path}
- set -i -e "s/roboshop_app_password/$roboshop_app_password/" /home/centos/roboshop-shell/$component.service
+ sed -i -e "s/roboshop_app_password/$roboshop_app_password/" /home/centos/roboshop-shell/$component.service
  stat_check $?
  echo -e "${color}start catalogue service ${nocolor}"
  systemctl daemon-reload &>>${log_path}

@@ -40,7 +40,7 @@ app_pre_setup()
  cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service &>>${log_path}
  sed -i -e "s/roboshop_app_password/$roboshop_app_password/" /home/centos/roboshop-shell/$component.service
  stat_check $?
- echo -e "${color}start catalogue service ${nocolor}"
+ echo -e "${color}start $component service ${nocolor}"
  systemctl daemon-reload &>>${log_path}
  systemctl enable $component &>>${log_path}
  systemctl restart $component &>>${log_path}
@@ -106,9 +106,8 @@ python() {
  app_pre_setup
  echo -e "${color} install application dependencies ${nocolor}"
  cd /app
- pip3.6 install -r requirements.txt &>>${log_path}
+ pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
  stat_check $?
  systemd_setup
- systemctl restart $component &>>${log_path}
 
 }

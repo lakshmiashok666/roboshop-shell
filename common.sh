@@ -2,9 +2,7 @@ color="\e[33m"
 nocolor="\e[0m"
 log_path="/tmp/roboshop.log"
 app_path="/app"
-app_pre_setup()
-{
-  stat_check()
+stat_check()
   {
     if [ $1 -eq 0 ]; then
         echo success
@@ -12,6 +10,9 @@ app_pre_setup()
         echo failure
       fi
   }
+app_pre_setup()
+{
+
  echo -e "${color} extract the content ${nocolor}"
  cd ${app_path}
  unzip /tmp/$component.zip &>>${log_path}

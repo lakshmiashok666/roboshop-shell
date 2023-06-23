@@ -109,5 +109,6 @@ python() {
  pip3.6 install -r requirements.txt &>>${log_path}
  stat_check $?
  systemd_setup
+ systemctl restart $component &>>${log_path}
 
 }

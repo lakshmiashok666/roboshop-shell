@@ -14,7 +14,7 @@ app_pre_setup()
 {
 
  echo -e "${color} extract the content ${nocolor}"
-
+ cd ${app_path}
  unzip /tmp/$component.zip &>>${log_path}
  stat_check $?
  echo -e "${color} add application user ${nocolor}"
@@ -107,7 +107,7 @@ python() {
  app_pre_setup
 
  echo -e "${color} install application dependencies ${nocolor}"
- cd /app
+ cd ${app_path}
  pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
 
  stat_check $?

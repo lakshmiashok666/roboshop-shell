@@ -14,7 +14,7 @@ app_pre_setup()
 {
 
  echo -e "${color} extract the content ${nocolor}"
- cd ${app_path}
+ cd /app
  unzip /tmp/$component.zip &>>${log_path}
  stat_check $?
  echo -e "${color} add application user ${nocolor}"
@@ -24,12 +24,12 @@ app_pre_setup()
  fi
  stat_check $?
  echo -e "${color} create application directory${nocolor}"
- rm -rf ${app_path} &>>${log_path}
- mkdir ${app_path}
+ rm -rf /app &>>${log_path}
+ mkdir /app
  stat_check $?
  echo -e "${color} download the application content${nocolor}"
  curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${log_path}
- cd ${app_path}
+
  stat_check $?
 
 
@@ -107,7 +107,7 @@ python() {
  app_pre_setup
 
  echo -e "${color} install application dependencies ${nocolor}"
- cd ${app_path}
+ cd /app
  pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
 
  stat_check $?

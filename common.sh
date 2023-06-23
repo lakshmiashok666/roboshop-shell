@@ -104,7 +104,7 @@ python() {
  stat_check $?
  app_pre_setup
  echo -e "${color} install application dependencies ${nocolor}"
- cd /app
+
  pip3.6 install -r requirements.txt &>>${log_path}
  stat_check $?
  systemd_setup

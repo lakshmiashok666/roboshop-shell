@@ -27,7 +27,7 @@ app_pre_setup()
  rm -rf ${app_path} &>>${log_path}
  mkdir ${app_path}
  stat_check $?
- echo -e "${color} download the applicaion conent${nocolor}"
+ echo -e "${color} download the application content${nocolor}"
  curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${log_path}
  cd ${app_path}
  stat_check $?
@@ -51,7 +51,7 @@ nodejs()
 {
  echo -e "${color}configuration nodejs repos ${nocolor}"
  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_path}
- echo -e "${color}install nodejs\e[0m"
+ echo -e "${color}install nodejs ${nocolor}"
  yum install nodejs -y &>>${log_path}
 
  app_pre_setup

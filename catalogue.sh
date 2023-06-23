@@ -1,5 +1,6 @@
 source common.sh
-component="catalogue"
+
+component=catalogue
 
 nodejs
 mongo_load_schema

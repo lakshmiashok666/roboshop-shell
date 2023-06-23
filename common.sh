@@ -1,4 +1,3 @@
-
 color="\e[33m"
 nocolor="\e[0m"
 log_path="/tmp/roboshop.log"

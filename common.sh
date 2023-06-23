@@ -103,10 +103,13 @@ python() {
  echo -e "${color} install python ${nocolor}"
  yum install python36 gcc python3-devel -y &>>${log_path}
  stat_check $?
+
  app_pre_setup
+
  echo -e "${color} install application dependencies ${nocolor}"
  cd /app
  pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
+
  stat_check $?
  systemd_setup
 

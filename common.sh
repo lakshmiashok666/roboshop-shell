@@ -93,7 +93,7 @@ mysql_shema_setup()
  yum install mysql -y &>>${log_path}
  stat_check $?
  echo -e "\e[33m load schema \e[0m"
- mysql -h mysql-dev.devops73.in -uroot -RoboShop@1 < /app/schema/shipping.sql &>>${log_path}
+ mysql -h mysql-dev.devops73.in -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>${log_path}
  stat_check $?
 
 }

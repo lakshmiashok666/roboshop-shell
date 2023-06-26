@@ -14,7 +14,7 @@ if [ $user_id -ne 0 ]; then
         echo success
       else
         echo failure
-        exist 1
+        exist1
       fi
 
   }

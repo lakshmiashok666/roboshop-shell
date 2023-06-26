@@ -11,12 +11,15 @@ if [ $user_id -ne 0 ]; then
  stat_check()
   {
     if [ $1 -eq 0 ]; then
+      {
         echo success
+        }
       else
         echo failure
-        exist1
-      fi
+        exist 1
 
+
+       fi
   }
  app_pre_setup()
 {

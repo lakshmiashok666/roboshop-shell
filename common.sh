@@ -16,7 +16,7 @@ if [ $user_id -ne 0 ]; then
         }
       else
         echo failure
-        exist 1
+        exit 1
 
 
        fi

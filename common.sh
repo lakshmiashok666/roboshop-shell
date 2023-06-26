@@ -15,12 +15,13 @@ if [ $user_id -ne 0 ]; then
         echo success
         }
       else
+        {
         echo failure
         exit 1
 
 
-       fi
-  }
+
+  } fi }
  app_pre_setup()
 {
  echo -e "${color} add application user ${nocolor}"

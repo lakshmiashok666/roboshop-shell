@@ -2,21 +2,24 @@ color="\e[33m"
 nocolor="\e[0m"
 log_path="/tmp/roboshop.log"
 app_path="/app"
-stat_check()
+user_id=$(id -u)
+if [ $user_id -ne 0 ]; then
+  {
+    echo script should be running with sudo
+
+  }  fi
+ stat_check()
   {
     if [ $1 -eq 0 ]; then
         echo success
       else
         echo failure
+        exist 1
       fi
-  }
-app_pre_setup()
-{
 
- echo -e "${color} extract the content ${nocolor}"
- cd /app
- unzip /tmp/$component.zip &>>${log_path}
- stat_check $?
+  }
+ app_pre_setup()
+{
  echo -e "${color} add application user ${nocolor}"
  id roboshop &>>${log_path}
  if [ $? -eq 1 ]; then
@@ -31,6 +34,10 @@ app_pre_setup()
  curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${log_path}
 
  stat_check $?
+  echo -e "${color} extract the content ${nocolor}"
+  cd ${app_path}
+  unzip /tmp/$component.zip &>>${log_path}
+  stat_check $?
 
 
 }
@@ -51,8 +58,10 @@ nodejs()
 {
  echo -e "${color}configuration nodejs repos ${nocolor}"
  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_path}
+ stat_check $?
  echo -e "${color}install nodejs ${nocolor}"
  yum install nodejs -y &>>${log_path}
+ stat_check $?
 
  app_pre_setup
 
@@ -60,6 +69,7 @@ nodejs()
 
  echo -e "${color} install nodejs dependencies ${nocolor}"
  npm install &>>${log_path}
+ stat_check $?
 
 
 }
@@ -67,10 +77,13 @@ mongo_load_schema()
 {
  echo -e "${color}copy mongodb repo file${nocolor}"
  cp /home/centos/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongo.repo &>>${log_path}
+ stat_check $?
  echo -e "${color}install mongodb client${nocolor}"
  yum install mongodb-org-shell -y &>>${log_path}
+ stat_check $?
  echo -e "${color}load schema${nocolor}"
  mongo --host mongodb-dev.devops73.in <${app_path}/schema/$component.js &>>${log_path}
+ stat_check $?
 
 
 }
@@ -78,9 +91,10 @@ mysql_shema_setup()
 {
  echo -e "\e[33m install mysql client"
  yum install mysql -y &>>${log_path}
+ stat_check $?
  echo -e "\e[33m load schema \e[0m"
  mysql -h mysql-dev.devops73.in -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>${log_path}
-
+ stat_check $?
 
 }
 
@@ -88,11 +102,13 @@ maven()
 {
  echo -e "${color} install maven ${nocolor}"
  yum install maven -y &>>${log_path}
+ stat_check $?
  app_pre_setup
 
  echo -e "${color} download maven dependencies ${nocolor}"
  mvn clean package &>>${log_path}
  mv target/$component-1.0.jar $component.jar &>>${log_path}
+ stat_check $?
 
  mysql_shema_setup
  systemd_setup

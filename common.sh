@@ -44,7 +44,7 @@ if [ $user_id -ne 0 ]; then
 {
  echo -e "${color} setup systemd service ${nocolor}"
  cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service &>>${log_path}
- sed -i -e "s/roboshop_app_password/$roboshop_app_password/" /home/centos/roboshop-shell/$component.service
+ sed -i -e "s/roboshop_app_password/$roboshop_app_password/" /etc/systemd/system/$component.service
  stat_check $?
  echo -e "${color}start $component service ${nocolor}"
  systemctl daemon-reload &>>${log_path}
@@ -92,7 +92,7 @@ mysql_shema_setup()
  yum install mysql -y &>>${log_path}
  stat_check $?
  echo -e "\e[33m load schema \e[0m"
- mysql -h mysql-dev.devops73.in -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>${log_path}
+ mysql -h mysql-dev.devops73.in -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>${log_path}
  stat_check $?
 
 }

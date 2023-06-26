@@ -4,24 +4,19 @@ log_path="/tmp/roboshop.log"
 app_path="/app"
 user_id=$(id -u)
 if [ $user_id -ne 0 ]; then
-  {
     echo script should be running with sudo
-
-  }  fi
+    exit1
+    fi
  stat_check()
   {
     if [ $1 -eq 0 ]; then
-      {
         echo success
-        }
       else
-        {
-        echo failure
+       echo failure
         exit 1
+       fi
 
-
-
-  } fi }
+   }
  app_pre_setup()
 {
  echo -e "${color} add application user ${nocolor}"

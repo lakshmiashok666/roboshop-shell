@@ -5,7 +5,7 @@ stat_check $?
 echo -e "${color} copy mysql repo file${nocolor}"
 cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo &>>/tmp/roboshop.log
 stat_check $?
-echo -e "${color}\ install mysql community server ${nocolor}"
+echo -e "${color} install mysql community server ${nocolor}"
 yum install mysql-community-server -y &>>/tmp/roboshop.log
 stat_check $?
 echo -e "${color} start mysql service${nocolor}"

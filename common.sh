@@ -86,12 +86,12 @@ mongo_load_schema()
 
 
 }
-mysql_shema_setup()
+mysql_schema_setup()
 {
- echo -e "\e[33m install mysql client"
+ echo -e "${color} install mysql client ${nocolor}"
  yum install mysql -y &>>${log_path}
  stat_check $?
- echo -e "\e[33m load schema \e[0m"
+ echo -e "${color} load schema ${nocolor}"
  mysql -h mysql-dev.devops73.in -uroot -p${mysql_root_password} </app/schema/${component}.sql &>>${log_path}
  stat_check $?
 
@@ -106,10 +106,10 @@ maven()
 
  echo -e "${color} download maven dependencies ${nocolor}"
  mvn clean package &>>${log_path}
- mv target/$component-1.0.jar $component.jar &>>${log_path}
+ mv target/${component}-1.0.jar ${component}.jar &>>${log_path}
  stat_check $?
 
- mysql_shema_setup
+ mysql_schema_setup
  systemd_setup
 
 }

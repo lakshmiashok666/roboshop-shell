@@ -89,7 +89,7 @@ mysql_schema_setup()
  yum install mysql -y &>>${log_file}
  stat_check $?
  echo -e "${color} load schema ${nocolor}"
- mysql -h mysql-dev.devops73.in -uroot -p${mysql_root_password} </app/schema/${component}.sql &>>${log_file}
+ mysql -h mysql-dev.devops73.in -uroot -pROBOSHOP@1 </app/schema/${component}.sql &>>${log_file}
  stat_check $?
 
 }

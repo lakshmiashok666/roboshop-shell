@@ -9,7 +9,7 @@ if [ $user_id -ne 0 ]; then
     fi
  stat_check()
   {
-    if [ $? -eq 0 ]; then
+    if [ $1 -eq 0 ]; then
         echo success
       else
        echo failure

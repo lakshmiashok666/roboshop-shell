@@ -72,7 +72,7 @@ nodejs()
 mongo_load_schema()
 {
  echo -e "${color}copy mongodb repo file${nocolor}"
- cp /home/centos/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
+ cp /home/centos/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongo.repo &>>${log_file}
  stat_check $?
  echo -e "${color}install mongodb client${nocolor}"
  yum install mongodb-org-shell -y &>>${log_file}
